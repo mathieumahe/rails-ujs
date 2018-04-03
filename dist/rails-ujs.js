@@ -333,6 +333,10 @@
           return stopEverything(e);
         }
       };
+      
+      Rails.confirm = function(message, element) {
+        return confirm(message)
+      };
 
       allowAction = function(element) {
         var answer, callback, message;
@@ -343,7 +347,7 @@
         answer = false;
         if (fire(element, 'confirm')) {
           try {
-            answer = confirm(message);
+            answer = Rails.confirm(message, element);
           } catch (undefined) {}
           callback = fire(element, 'confirm:complete', [answer]);
         }
